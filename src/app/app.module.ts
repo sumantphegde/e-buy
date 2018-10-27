@@ -7,7 +7,13 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { RouterModule } from '@angular/router'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticateService } from './authenticate.service';
-import { RestrictAccessService } from './restrict-access.service';
+import { RestrictAccess } from './restrict-access.service';
+import { UserService } from './user.service';
+import { AdminAccess } from './admin-access.service';
+import { ProdCategoryService } from './prod-category.service';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './product.service';
+import { CustomFormsModule } from 'ng2-validation';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,6 +23,9 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { LoginComponent } from './login/login.component';
+import { AdProductsComponent } from './admin/ad-products/ad-products.component';
+import { AdOrdersComponent } from './admin/ad-orders/ad-orders.component';
+import { PFormComponent } from './admin/p-form/p-form.component';
 
 @NgModule({
   declarations: [
@@ -27,27 +36,55 @@ import { LoginComponent } from './login/login.component';
     CheckOutComponent,
     ShoppingCartComponent,
     MyOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    AdProductsComponent,
+    AdOrdersComponent,
+    PFormComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    FormsModule,
     AngularFireAuthModule,
+    CustomFormsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shoppingCart', component: ShoppingCartComponent },
-      { path: 'check-out', component: CheckOutComponent, canActivate: [RestrictAccessService] },
-      { path: 'myOrders', component: MyOrdersComponent, canActivate: [RestrictAccessService] },
-      { path: 'login', component: LoginComponent }
-
+      { path: 'check-out', component: CheckOutComponent, canActivate: [RestrictAccess] },
+      { path: 'myOrders', component: MyOrdersComponent, canActivate: [RestrictAccess] },
+      { path: 'login', component: LoginComponent },
+      {
+        path: 'admin/products/add',
+        component: PFormComponent,
+        canActivate: [RestrictAccess, AdminAccess]
+      },
+      {
+        path: 'admin/products/:id',
+        component: PFormComponent,
+        canActivate: [RestrictAccess, AdminAccess]
+      },
+      {
+        path: 'admin/products',
+        component: AdProductsComponent,
+        canActivate: [RestrictAccess, AdminAccess]
+      },
+      {
+        path: 'admin/orders',
+        component: AdOrdersComponent,
+        canActivate: [RestrictAccess, AdminAccess]
+      },
     ])
   ],
   providers: [
     AuthenticateService,
-    RestrictAccessService
+    RestrictAccess,
+    AdminAccess,
+    UserService,
+    ProdCategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

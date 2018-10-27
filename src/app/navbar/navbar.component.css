@@ -1,5 +1,11 @@
-
-.dropdown-toggle
-{
+.dropdown-toggle {
   cursor: pointer;
+}
+
+.navbar-brand {
+  cursor: pointer;
+  height: 55px;
+  width: 100px;
+  cursor: pointer;
+  border: 0;
 }

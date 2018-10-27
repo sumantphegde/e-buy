@@ -1,0 +1,52 @@
+<div class="card shadow" align="center">
+  <div class="card-body">
+    <form #val="ngForm" (ngSubmit) = "save(val.value)">
+      <h4>New Product details</h4><br>
+      <div class="form-group" style="text-align:Justify">
+        <label for="inputPName">Product Type:</label>
+        <input #type="ngModel"  [(ngModel)]="prd.type" name="type" type="text" class="form-control" id="pType" placeholder="Eg.- T-Shirt, Formal Shirt" required>
+        <div class="alert alert-danger" *ngIf = "type.touched && type.invalid">
+          Type field should not be empty.
+        </div>
+        <div class="form-group" style="text-align:Justify">
+        <label for="inputPName">Brand</label>
+        <input #brand="ngModel"  [(ngModel)]="prd.brand" name="brand" type="text" class="form-control" id="pBrand" placeholder="Eg.- Nike, Levis" required>
+        <div class="alert alert-danger" *ngIf = "brand.touched && brand.invalid">
+          Brand field should not be empty.
+        </div>
+        </div>
+        <div class="form-group" style="text-align:Justify">
+        <label for="inputPrice">Price</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+          </div>
+          <input #price="ngModel"  [(ngModel)]="prd.price" name="price" type="number" class="form-control" id="pPrice" required [min]="0">
+        </div>
+          <div class="alert alert-danger" *ngIf = "price.touched && price.invalid">
+              <div *ngIf = "price.errors.required">Price field should not be empty.</div>
+              <div *ngIf = "price.errors.min">Price should be 0 or greater</div>
+            </div>
+        </div>
+        <label for="inputPCategory">Product Category:</label>
+        <select #category="ngModel"  [(ngModel)]="prd.category" name="category" class="form-control" id="pCategoty" required>
+          <option value=""></option>
+          <option *ngFor="let cat of categories$ | async" [value]="cat.key">{{ cat.payload.val().name }}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf = "category.touched && category.invalid">
+          Category field should not be empty.
+        </div>
+        <label for="inputImage">Image Source:</label>
+        <input #image="ngModel"  [(ngModel)]="prd.image" name="image" type="text" class="form-control" id="image" required>
+        <div class="alert alert-danger" *ngIf = "image.touched && image.invalid">
+          Image field should not be empty.
+        </div>
+        <div class="btn-toolbar mx-auto">
+          <button type="submit" class="btn btn-success m-3">Save</button>
+          <button type="button" (click)="delete()" class="btn btn-danger m-3">Delete</button>
+          <button type="button" (click)="cancel()" class="btn btn-secondary m-3">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

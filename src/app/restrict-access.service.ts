@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
-export class RestrictAccessService implements CanActivate{
+export class RestrictAccess implements CanActivate{
 
   constructor(private auth:AuthenticateService, private router:Router) { }
 

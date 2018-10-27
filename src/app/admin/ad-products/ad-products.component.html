@@ -1,0 +1,25 @@
+
+<p><a routerLink="/admin/products/add" class="btn btn-info">
+  Add Product
+</a></p>
+<table class="table border border-light shadow">
+  <thead class="thead-dark">
+    <tr>
+      <th>Title</th>
+      <th>Brand</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let p of product$ | async">
+      <td>{{ p.payload.val().type }}</td>
+      <td>{{ p.payload.val().brand }}</td>
+      <td>{{ p.payload.val().price }}</td>
+      <td>{{ p.payload.val().category }}</td>
+      <td><a [routerLink]="['/admin/products/',p.key]">Edit</a></td>
+    <!--  <td><button type="button" (click)="delete()" class="btn btn-danger m-3">Delete</button></td> -->
+    </tr>
+  </tbody>
+</table>
