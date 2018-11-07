@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Product } from './models/product';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +28,16 @@ export class ProductService {
 
   delete(prodId){
     return this.database.object('/products/' + prodId).remove();
+  }
+  getAll() {//Return in terms of Product[] for enabling filtering
+    return this.database.list<Product>('/products').snapshotChanges().pipe(
+      map(changes =>
+          changes.map(c => {
+              const data = c.payload.val() as Product;
+              const id = c.payload.key;
+              return { id, ...data };
+          })
+      )
+  );;
   }
 }

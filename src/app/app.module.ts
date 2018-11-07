@@ -26,6 +26,10 @@ import { LoginComponent } from './login/login.component';
 import { AdProductsComponent } from './admin/ad-products/ad-products.component';
 import { AdOrdersComponent } from './admin/ad-orders/ad-orders.component';
 import { PFormComponent } from './admin/p-form/p-form.component';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './shopping-cart.service';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,10 @@ import { PFormComponent } from './admin/p-form/p-form.component';
     LoginComponent,
     AdProductsComponent,
     AdOrdersComponent,
-    PFormComponent
+    PFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +57,7 @@ import { PFormComponent } from './admin/p-form/p-form.component';
     CustomFormsModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shoppingCart', component: ShoppingCartComponent },
       { path: 'check-out', component: CheckOutComponent, canActivate: [RestrictAccess] },
@@ -84,7 +91,8 @@ import { PFormComponent } from './admin/p-form/p-form.component';
     AdminAccess,
     UserService,
     ProdCategoryService,
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })
