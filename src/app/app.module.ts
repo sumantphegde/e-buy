@@ -14,7 +14,7 @@ import { ProdCategoryService } from './prod-category.service';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from './product.service';
 import { CustomFormsModule } from 'ng2-validation';
-
+import {OrderSuccessComponent} from './order-success/order-success.component';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
@@ -30,6 +30,9 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { OrderService } from 'src/app/order.service';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     PFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    OrderSuccessComponent,
+    ShoppingCartSummaryComponent,
+    ShippingFormComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +66,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
       { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shoppingCart', component: ShoppingCartComponent },
+      { path : 'order-success/:id', component : OrderSuccessComponent, canActivate: [RestrictAccess] },
       { path: 'check-out', component: CheckOutComponent, canActivate: [RestrictAccess] },
       { path: 'myOrders', component: MyOrdersComponent, canActivate: [RestrictAccess] },
       { path: 'login', component: LoginComponent },
@@ -92,7 +99,8 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     UserService,
     ProdCategoryService,
     ProductService,
-    ShoppingCartService
+    ShoppingCartService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

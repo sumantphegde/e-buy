@@ -15,7 +15,7 @@ export class ProductCardComponent {
 
   constructor(private cartService: ShoppingCartService) {
 
-    console.log("iooooooooooooooo");
+    //console.log("iooooooooooooooo");
     console.log(this.product);
    }
 
