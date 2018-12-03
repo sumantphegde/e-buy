@@ -33,6 +33,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
 import { OrderService } from 'src/app/order.service';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { ViewOrdersComponent } from './my-orders/view-orders/view-orders.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     ProductQuantityComponent,
     OrderSuccessComponent,
     ShoppingCartSummaryComponent,
-    ShippingFormComponent
+    ShippingFormComponent,
+    ViewOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
       { path: 'check-out', component: CheckOutComponent, canActivate: [RestrictAccess] },
       { path: 'myOrders', component: MyOrdersComponent, canActivate: [RestrictAccess] },
       { path: 'login', component: LoginComponent },
+      { path: 'view-orders/:id', component: ViewOrdersComponent, canActivate: [RestrictAccess]},
       {
         path: 'admin/products/add',
         component: PFormComponent,
