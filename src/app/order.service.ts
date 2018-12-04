@@ -30,4 +30,9 @@ export class OrderService {
     
     return this.db.list('/order',ref => ref.orderByChild('userID').equalTo(userId)).valueChanges();
   }
+  getOrdersByCartID(dateplaced: any) {
+    console.log(dateplaced);
+    return this.db.list('/order',ref => ref.orderByChild('datePlaced').equalTo(dateplaced)).valueChanges();
+  }
+
 }
