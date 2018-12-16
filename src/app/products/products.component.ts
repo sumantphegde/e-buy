@@ -31,12 +31,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.filteredProducts=(this.category)?this.products.filter(p=>p.category===this.category):this.products;
       });
     
-
-    
-    
-
-   
-    
    }
 
   async ngOnInit() {

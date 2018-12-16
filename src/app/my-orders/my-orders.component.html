@@ -6,16 +6,19 @@
       <th>Date</th>
       <th></th>
     </tr>
-  </thead> 
+  </thead>
   <tbody>
-     
-    <tr *ngFor="let order of orders$ | async">
+    <tr *ngFor="let order of (orders$ | async)">
       <td>{{ order.shipping.name }}</td>
       <td>{{ order.datePlaced | date }}</td>
-      <td (click)= "viewOrders(order.datePlaced)" >
-        view
-       <!-- <button (click)= viewOrders($event)>{{ order.shoppingCart.key }}</button> -->
+      <td>
+        <a href="javascript:void(0);" (click)="viewOrders(order.datePlaced)">
+          view
+        </a>
+        <!--
+          <button (click)= viewOrders($event)>{{ order.shoppingCart.key }}</button>
+        -->
       </td>
     </tr>
-  </tbody> 
+  </tbody>
 </table>
