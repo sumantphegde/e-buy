@@ -1,9 +1,8 @@
 # Ebuy
 E-Commmerce website for clothes.
 
-## Development server
+## How to Run the project
 
-Steps to run the site
 1. Download or clone the project into your machine.
 2. Make sure Node.js is installed.
 3. Open command prompt and navigate till the project path.
